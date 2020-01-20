@@ -20,13 +20,11 @@ def find_maxima(x):
     up = True
     for i in range(len(x)):
         # `i` is a local maximum if the signal decreases before and after it
+
         # starting or going up
         if i == 0 or x[i] > x[i-1]:
             up = True
             bfr = [i]
-            # ending
-            if i == len(x) - 1:
-                idx += bfr
         # plateau
         elif x[i] == x[i-1]:
             if up:
@@ -36,4 +34,8 @@ def find_maxima(x):
             up = False
             idx += bfr
             bfr = []
+        # end
+        if i == len(x) - 1:
+            if up:
+                idx += bfr                     
     return idx
