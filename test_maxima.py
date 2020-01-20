@@ -21,5 +21,8 @@ def test_5():
 def test_6():
     assert find_maxima([3, 2, 2, 3]) ==  [0, 3]
 
-def test_6():
+def test_7():
     assert find_maxima([1, 2, 2, 1]) ==  [1, 2]
+
+def test_8():
+    assert find_maxima([1, 2, 2, 2]) ==  [1, 2, 3]
