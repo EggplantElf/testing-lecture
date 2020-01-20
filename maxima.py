@@ -1,3 +1,5 @@
+import numpy as np
+
 def find_maxima(x):
     """Find local maxima of x.
 
@@ -14,8 +16,24 @@ def find_maxima(x):
     """
 
     idx = []
+    bfr = []
+    up = True
     for i in range(len(x)):
         # `i` is a local maximum if the signal decreases before and after it
-        if x[i-1] < x[i] and x[i+1] < x[i]:
-            idx.append(i)
+        # starting or going up
+        if i == 0 or x[i] > x[i-1]:
+            up = True
+            bfr = [i]
+            # ending
+            if i == len(x) - 1:
+                idx += bfr
+        # plateau
+        elif x[i] == x[i-1]:
+            if up:
+                bfr.append(i)
+        # going down
+        elif x[i] < x[i-1]:
+            up = False
+            idx += bfr
+            bfr = []
     return idx
